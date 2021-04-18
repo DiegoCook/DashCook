@@ -36,6 +36,7 @@ car2.color = 'blue'
 
 console.log(car, car2) // `car` es de color rojo y `car2` de color azul
 ```
+
 >## JSON.parse y JSON.stringify
 
 Sin embargo, este método no es suficiente para copiar y modificar objetos con subobjetos por el mismo problema de las referencias. La mejor manera copiar los valores de nuestros objetos en vez de sus referencias es utilizando las funciones `JSON.parse y JSON.stringify`:
@@ -77,7 +78,7 @@ JSON.stringify({ key: Nan });
 JSON.stringify({ key: Infinity });
 // todo se convertirá a "{"key": null}"
 ```
+
 Finalmente, hay un problema con `Date()`. Las fechas se analizarán como cadenas, no como fechas. Por lo tanto, si almacena el objeto Dates en su objeto y lo clona usando JSON, también los perderá.
 
 [Enlace a Petro Zubar. Why JSON.parse(JSON.stringify()) is a bad practice to clone an object in JavaScript](https://medium.com/@pmzubar/why-json-parse-json-stringify-is-a-bad-practice-to-clone-an-object-in-javascript-b28ac5e36521)
-
