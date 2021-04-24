@@ -238,6 +238,66 @@ Nota: *Day*, *Month*, *Year*, *Hour*, *Minutes*, *Seconds* and *Miliseconds* tie
 
 <br>
 
+El objeto permite el formato de fecha y hora sensible al idioma.
+
+### Constructor
+
+```javascript
+let hoy = new Date()
+let options = { 
+  weekday: 'short', 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric',
+  hour: 'numeric',
+  second: 'numeric',
+  minute: 'numeric',
+  timeZone: 'America/Argentina/Buenos_Aires',
+  timeZoneName: 'long',
+  fractionalSecondDigits: 3, //número de dígitos para la fracción de segundos
+  hour12: true,
+  //dayPeriod: 'long' figura como opción en MDN pero no logré hacerlo funcionar
+  }
+
+let hoyConFormato = new Intl.DateTimeFormat("es-AR", options).format(hoy)
+//retorna: "vie, 23 de abril de 2021 7:36:05,657 p. m. hora estándar de Argentina"
+```
+
+### Intl.DateTimeFormat().format()
+
+Formatea una fecha de acuerdo con la configuración regional y las opciones de formato de este objeto `Intl.DateTimeFormat`.
+
+```javascript
+const options1 = { 
+  weekday: 'long', 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric' 
+  }
+const hoy = new Date()
+
+const hoyConFormato = new Intl.DateTimeFormat('es-AR', options1)
+const todayWithFormat = new Intl.DateTimeFormat('en-US', options1)
+
+hoyConFormato.format(hoy)
+//retorna: "viernes, 23 de abril de 2021"
+todayWithFormat.format(hoy)
+//retorna: "Friday, April 23, 2021"
+```
+
+Si se utiliza con `map()` no debe utilizarse como función invocada `.format()` sino solo `.format`
+
+```javascript
+var fechas = [new Date(1810, 4), new Date(1816, 6), new Date(1982, 3)]
+var options = { year: 'numeric', month: 'long'}
+var fechasConFormato = new Intl.DateTimeFormat('es-AR', options)
+var fechasFormateadas = fechas.map(fechasConFormato.format)
+fechasFormateadas
+//retona: (3) ["mayo de 1810", "julio de 1816", "abril de 1982"]
+```
+
+
+
 [Enlace a MDN - Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
 
 <span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
