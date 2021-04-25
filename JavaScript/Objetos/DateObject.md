@@ -23,9 +23,19 @@ let cumpleanos3 = new Date(1995,11,17,3,24,0)
 
 [Métodos de Date()](#metodos)
 
-[Intl.DateTimeFormat](#intl-date-tim-format)
+[Intl.DateTimeFormat](#intl-date-time-format)
 
-[Time Zone lis in JS](#time-zone-list)
+* [format ( )](#format)
+
+* [formatToParts ( )](#format-to-parts)
+
+* [resolvedOptions ( )](#resolved-options)
+
+* [formatRange ( )](#range)
+
+* [formatRangeToParts ( )](#range-to-parts)
+
+[Time Zone list in JS](#time-zone-list)
 
 [Lista de formatos por idiomas y paises](#list-of-locales)
 
@@ -232,7 +242,7 @@ Nota: *Day*, *Month*, *Year*, *Hour*, *Minutes*, *Seconds* and *Miliseconds* tie
 
 ---
 
-## <span id="intl-date-tim-format" style="color: #4750ce">Intl.DateTimeFormat
+## <span id="intl-date-time-format" style="color: #4750ce">Intl.DateTimeFormat
 
 ---
 
@@ -263,7 +273,28 @@ let hoyConFormato = new Intl.DateTimeFormat("es-AR", options).format(hoy)
 //retorna: "vie, 23 de abril de 2021 7:36:05,657 p. m. hora estándar de Argentina"
 ```
 
-### Intl.DateTimeFormat().format()
+El método recibe dos parámetros: `locales` y `options`.
+
+### `LOCALES`
+
+Es una `string` con una etiqueta de idioma BCP 47 o un `array` de dichas `strings`. Para usar la configuración regional predeterminada del navegador, pase un `array` vacío. Se admiten las extensiones Unicode (por ejemplo, `en-US-u-ca-buddhist`). Para conocer la forma general y la interpretación del `locales` argumento, consulte la página [Intl](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Intl) . Además de idioma y país, se permiten las siguientes claves de extensión Unicode:
+
+* *nu*: Sistema de numeración. Los valores posibles incluyen: `arab`, `arabext`, `bali`, `beng`, `deva`, `fullwide`, `gujr`, `guru`, `hanidec`, `khmr`, `knda`, `laoo`, `latn`, `limb`, `mlym`, `mong`,`mymr`,`orya`,`tamldec`,`telu`,`thai`,`tibt`.
+
+* *ca*: Calendario. Los valores posibles incluyen: `buddhist`, `chinese`, `coptic`, `ethiopia`, `ethiopic`, `gregory`, `hebrew`, `indian`, `islamic`, `iso8601`, `japanese`, `persian`, `roc`.
+
+* *hc*: Ciclo de horas. Los valores posibles incluyen: `h11`, `h12`, `h23`, `h24`.
+
+### `OPTIONS`
+
+(opcional) Es un objeto con algunas o todas las siguientes propiedades:
+
+
+<br>
+
+### <span id="format" style="color: red">Intl.DateTimeFormat().format()
+
+---
 
 Formatea una fecha de acuerdo con la configuración regional y las opciones de formato de este objeto `Intl.DateTimeFormat`.
 
@@ -294,6 +325,210 @@ var fechasConFormato = new Intl.DateTimeFormat('es-AR', options)
 var fechasFormateadas = fechas.map(fechasConFormato.format)
 fechasFormateadas
 //retona: (3) ["mayo de 1810", "julio de 1816", "abril de 1982"]
+```
+
+<br>
+
+### <span id="format-to-parts" style="color: red">Intl.DateTimeFormat().formatToParts()
+
+---
+
+En muchas interfaces de usuario existe el deseo de personalizar el formato de esta cadena. El `formatToParts()` método permite el formateo de cadenas producidas por `DateTimeFormat()` formateadores en función de la configuración regional al proporcionarle la cadena en una array de objetos con las partes del `Date()`.
+
+```javascript
+let date = new Date()
+
+let formateador = new Intl.DateTimeFormat('en-us', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  second: 'numeric',
+  fractionalSecondDigits: 3,
+  hour12: true,
+  timeZone: 'UTC'
+})
+
+formatter.format(date);
+//retorna: "Monday, 12/17/2012, 3:00:42.000 AM"
+
+formatter.formatToParts(date);
+// retorna:
+[
+  { type: 'weekday',   value: 'Monday' },
+  { type: 'literal',   value: ', '     },
+  { type: 'month',     value: '12'     },
+  { type: 'literal',   value: '/'      },
+  { type: 'day',       value: '17'     },
+  { type: 'literal',   value: '/'      },
+  { type: 'year',      value: '2012'   },
+  { type: 'literal',   value: ', '     },
+  { type: 'hour',      value: '3'      },
+  { type: 'literal',   value: ':'      },
+  { type: 'minute',    value: '00'     },
+  { type: 'literal',   value: ':'      },
+  { type: 'second',    value: '42'     },
+  { type: 'fractionalSecond', value: '000' },
+  { type: 'literal',   value: ' '      },
+  { type: 'dayPeriod', value: 'AM'     }
+]
+```
+
+Con la información disponible por separado se puede formatear y concatenar nuevamente de forma personalizada. Por ejemplo, utilizando `Array.map()`, arrow functions, una sentencia `switch`, literales plantilla y `Array.join()`. Por ejemplo:
+
+```javascript
+//PARTE I
+//Se declara la fecha ylas opciones de formato
+let hoy = new Date()
+let options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+    timeZone: 'America/Argentina/Buenos_Aires',
+    timeZoneName: 'short',
+    fractionalSecondDigits: 3,
+    era: 'long'
+}
+
+let formato = new Intl.DateTimeFormat('es-AR', options)
+
+//PARTE II
+//Se crea el array de objetos con las partes de la fecha según la configuración locale elegida y las opciones de formato.
+let diseccionDeHoy = formato.formatToParts(hoy) 
+
+//PARTE III
+//Se efectúan los cambios en el array, según las preferencias.
+const mejorandoHoy = () => {
+    for(let i = 0; i < diseccionDeHoy.length; i++) {
+        if(diseccionDeHoy[i].value === " ") {
+            diseccionDeHoy[i].value = " 🤓 " 
+        }
+        if(diseccionDeHoy[i].value === ", ") {
+            diseccionDeHoy[i].value = " 🗓 "
+        }
+    }
+    return diseccionDeHoy
+}
+
+mejorandoHoy()
+
+//PARTE IV
+//Se aplica el método map() con una función (mapenado eneste caso) para seleccionar solo los valores de las propiedades value de cada uno de los objetos de array generado por formatToParts(). Y se le aplica join() para volver a generar la string con el nuevo formato de la fecha
+function mapeando(elemento){
+    let soloValue = elemento.value
+    return soloValue
+}
+
+let nuevoHoy = diseccionDeHoy.map(mapeando).join('')
+
+nuevoHoy
+//retorna: "sábado 🗓 24 de abril de 2021 🤓 después de Cristo 🤓 10:39:02,862 🤓 p. m. 🤓 ART"
+```
+
+<br>
+
+### <span id="resolved-options" style="color: red">Intl.DateTimeFormat().resolvedOptions()
+
+---
+
+El método devuelve un nuevo objeto con propiedades que reflejan la configuración regional y las opciones de formato de fecha y hora calculadas durante la inicialización de este objeto `Intl.DateTimeFormat`.
+
+```javascript
+let hoy = new Date()
+let options = {
+    timeZone: 'America/Argentina/Buenos_Aires'
+}
+
+let formato = new Intl.DateTimeFormat('es-AR', options)
+let opcionesUsadas = formato.resolvedOptions()
+//retorna
+{
+calendar: "gregory",
+day: "numeric",
+locale: "es-AR",
+month: "numeric",
+numberingSystem: "latn",
+timeZone: "America/Buenos_Aires",
+year: "numeric"
+}
+```
+
+<br>
+
+### <span id="range" style="color: red">Intl.DateTimeFormat().formatRange()
+
+---
+
+Es un método que se utiliza para formatear un rango de fechas de la manera más concisa según la configuración regional y las opciones proporcionadas al crear una instancia del objeto Intl.DateTimeFormat.
+
+Este método acepta dos parámetros:
+
+* startDate: este parámetro contiene la fecha de inicio del rango.
+* endDate: este parámetro contiene la fecha de finalización del rango.
+
+```javascript
+let ayer = new Date(2021, 3, 24)
+let hoy = new Date()
+let options = {
+  year: '2-digit',
+  month: '2-digit',
+  day: '2-digit',
+  weekday: 'long'
+}
+
+let formato = new Intl.DateTimeFormat("es-AR", options)
+let rango = formato.formatRange(ayer, hoy)
+//retorna: "sábado, 24/04/21 – domingo, 25/04/21"
+```
+
+<br>
+
+### <span id="range-to-parts" style="color: red">Intl.DateTimeFormat().formatRangeToParts()
+
+---
+
+Este método recibe dos `Dates` y devuelve un Array de objetos que contienen los tokens específicos de la configuración regional que representan cada parte del rango de fechas formateado.
+
+```javascript
+let ayer = new Date(2021, 3, 24)
+let hoy = new Date()
+let options = {
+  calendar: 'chinese', 
+  numberingSystem: 'arab',
+  weekday: 'long',
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric'
+  }
+
+let formato = new Intl.DateTimeFormat('es-AR', options)
+let rango = formato.formatRangeToParts(ayer, hoy)
+rango
+//retorna: 
+[
+  {type: "year", value: "٣٨", source: "startRange"},
+  {type: "literal", value: "-", source: "startRange"},
+  {type: "month", value: "٠٣", source: "startRange"},
+  {type: "literal", value: "-", source: "startRange"},
+  {type: "day", value: "١٣", source: "startRange"},
+  {type: "literal", value: ", ", source: "startRange"},
+  {type: "weekday", value: "sábado", source: "startRange"},
+  {type: "literal", value: " – ", source: "shared"},
+  {type: "year", value: "٣٨", source: "endRange"},
+  {type: "literal", value: "-", source: "endRange"},
+  {type: "month", value: "٠٣", source: "endRange"},
+  {type: "literal", value: "-", source: "endRange"},
+  {type: "day", value: "١٤", source: "endRange"},
+  {type: "literal", value: ", ", source: "endRange"},
+  {type: "weekday", value: "domingo", source: "endRange"}
+]
 ```
 
 
