@@ -15,7 +15,7 @@ let cumpleanos = new Date("December 17, 1995 03:24:00")
 let cumpleanos2 = new Date(1995,11,17)
 
 let cumpleanos3 = new Date(1995,11,17,3,24,0)
-//año, mes día, hora, minuto, segundo
+//año, mes, día, hora, minuto, segundo
 
 ```
 
@@ -285,12 +285,102 @@ Es una `string` con una etiqueta de idioma BCP 47 o un `array` de dichas `string
 
 * *hc*: Ciclo de horas. Los valores posibles incluyen: `h11`, `h12`, `h23`, `h24`.
 
+[Enlace al listdo de locales por idioma y paises](#list-of-locales)
+
+Ejemplo:
+
+```javascript
+let formato = new Intl.dateTimeFormat('ja-JP-u-ca-japanese')
+```
+
+1. `ja-JP` hace referencia al locale.
+1. `u` hace referencia a Unicode para indicar que lo que sigue es personalización adicional.
+1. `ca` hace referencia a lo que se va a personalizar. En este caso, al calendario.
+1. `japanese` hace referncia a calendario elegido para personalizar el formato.
+
 ### `OPTIONS`
 
-(opcional) Es un objeto con algunas o todas las siguientes propiedades:
+(opcional) Es un objeto que debe declararse antes de la variable que contenga el método `DateTimeFormat()`.  Puede incluir algunas de las siguientes propiedades:
 
+* `dateStyle`: El estilo de formato de fecha que se usará al llamar format(). Los posibles valores incluyen:
+  * `'full'` (retorna: `"lunes, 26 de abril de 2021"`)
+  * `'long'` (retorna `"26 de abril de 2021"`)
+  * `'medium'` (retorna: `"26 abr. 2021"`)
+  * `'short'` (retorna: `"26/4/21"`)
+  >`dateStylese` se puede utilizar con `timeStyle`, pero no con otras opciones (por ejemplo `weekday`, `hour`, `month`, etc.).
+
+* `timeStyle`: El estilo de formato de hora que se utilizará al llamar format(). Los posibles valores incluyen:
+  * `'full'` (retorna: `"19:09:01 hora estándar de Argentina"`)
+  * `'long'` (retorna: `"19:09:01 ART"`)
+  * `'medium'` (retorna: `"19:09:01"`)
+  * `'short'` (retorna: `"19:09"`)
+  >`timeStylese` se puede utilizar con `dateStyle`, pero no con otras opciones (por ejemplo `weekday`, `hour`, `month`, etc.).
+
+* `calendar`: Calendario. Los valores posibles incluyen: `'buddhist'`, `'chinese'`, `'coptic'`, `'ethiopia'`, `'ethiopic'`, `'gregory'`, `'hebrew'`, `'indian'`, `'islamic'`, `'iso8601'`, `'japanese'`, `'persian'`, `'roc'`.
+
+* `dayPeriod`: La forma en que deben expresarse los períodos de días. Los valores posibles incluyen: `'narrow'`, `'short'`, `'long'`.
+
+* `numberingSystem`: Sistema de numeración. Los valores posibles incluyen: `'arab'`, `'arabext'`, `'bali'`, `'beng'`, `'deva'`, `'fullwide'`, `'gujr'`, `'guru'`, `'hanidec'`, `'khmr'`, `'knda'`, `'laoo'`, `'latn'`, `'limb'`, `'mlym'`, `'mong'`,`'mymr'`,`'orya'`,`'tamldec'`,`'telu'`,`'thai'`,`'tibt'`.
+
+* `localeMatcher`: El algoritmo de coincidencia de configuración regional que se utilizará. Los valores posibles son `'lookup'` y `'best fit'`; el valor predeterminado es `'best fit'`. Para obtener información sobre esta opción, consulte la página [Intl](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Intl).
+
+* `timeZone`: La zona horaria que se utilizará. El único valor que deben reconocer las implementaciones es `'UTC'`; el valor predeterminado es la zona horaria predeterminada del tiempo de ejecución. Las implementaciones también pueden reconocer los nombres de las zonas horarias de la base de datos de zonas horarias de la IANA , como `'Asia/Shanghai'`, `'Asia/Kolkata'`, `'America/New_York'`. [Enlace a listado de time zones.](#time-zone-list)
+
+* `hour12`: Ya sea para usar el tiempo de 12 horas (en contraposición al tiempo de 24 horas). Los valores posibles son `true` y `false`; el valor predeterminado depende de la configuración regional. Esta opción anula la etiqueta de idioma `hc` y / o la opción `hourCycle` en caso de que ambas estén presentes.
+
+* `hourCycle`: El ciclo de horas que se utilizará. Los valores posibles son `'h11'`, `'h12'`, `'h23'` o `'h24'`. Esta opción anula la etiqueta de idioma `hc`, si ambas están presentes, y la opción `hour12` tiene prioridad en caso de que se hayan especificado ambas opciones.
+
+* `formatMatcher`: El algoritmo de coincidencia de formato que se utilizará. Los valores posibles son `'basic'` y `'best fit'`; el valor predeterminado es `'best fit'`.
+
+* `weekday`: La representación del día de la semana. Los posibles valores son:
+  * `long` (retorna: `"miércoles"`)
+  * `short` (retorna: `"mié."` )
+  * `narrow` (retorna: `"M"`). Dos días de la semana pueden tener el mismo estilo `narrow` para algunos lugares (por ejemplo martes y miércoles, el estilo `narrow` es `"M"`).
+
+* `era`: La representación de la época antes de Cristo y después de Cristo. Los posibles valores son:
+  * `long` (retorna: `después de Cristo"`)
+  * `short` (retorna: `d. C."`)
+  * `narrow` (retorna: `d. C."`, en español son iguales `narrow` y `short`)
+
+* `year`: La representación del año. Los posibles valores son:
+  * `numeric` (retornra: `"2012"`)
+  * `2-digit` (retornra: `"12"`)
+
+* `month`: La representación del mes. Los posibles valores son:
+  * `numeric` (retorna: `"2"`)
+  * `2-digit` (retorna: `"02"`)
+  * `long` (retorna: `"Marzo"`)
+  * `short` (retorna: `"Mar."`)
+  * `narrow` (retorna: `"M"`). Dos meses pueden tener el mismo estilo `narrow` para algunos lugares (por ejemplo razo y mayo, el estilo `narroe` es igual: `"M"`).
+
+* `day`: La representación del día. Los posibles valores son:
+  * `numeric` (retorna: `"1"`)
+  * `2-digit` (retorna: `"01"`)
+
+* `hour`: La representación de la hora. Los valores posibles son `'numeric'`, `'2-digit'`.
+
+* `minute`: La representación del minuto. Los valores posibles son `'numeric'`, `'2-digit'`.
+
+* `second`: La representación del segundo. Los valores posibles son `'numeric'`, `'2-digit'`.
+
+* `fractionalSecondDigits`: El número de dígitos utilizados para representar fracciones de segundo (los dígitos adicionales se truncan). Los posibles valores son:
+  * `0` (Parte fraccional `false`.)
+  * `1` (Parte fraccionaria representada como 1 dígito. Por ejemplo, 736 tiene el formato 7.)
+  * `2` (Parte fraccionaria representada como 2 dígitos. Por ejemplo, 736 tiene el formato 73.)
+  * `3` (Parte fraccionaria representada como 3 dígitos. Por ejemplo, 736 tiene el formato 736.)
+  >Agregado en Firefox 84, Chrome 84, etc. Consulte la tabla de compatibilidad para obtener más información.
+
+* timeZoneName La representación del nombre de la zona horaria. Los posibles valores son:
+  * `'long'` (retorna: `hora estándar de Argentina"`)
+  * `'short'` (retorna: `ART"`)
+
+El valor por defecto para cada propiedad de componente de fecha y hora es `undefined`, pero si todas las propiedades de los componentes son `undefined`, entonces JS asume que `year`, `month` y `day` son `'numeric'`.
+
+<span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
 
 <br>
+
+---
 
 ### <span id="format" style="color: red">Intl.DateTimeFormat().format()
 
@@ -327,7 +417,11 @@ fechasFormateadas
 //retona: (3) ["mayo de 1810", "julio de 1816", "abril de 1982"]
 ```
 
+<span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
+
 <br>
+
+---
 
 ### <span id="format-to-parts" style="color: red">Intl.DateTimeFormat().formatToParts()
 
@@ -432,7 +526,11 @@ nuevoHoy
 //retorna: "sábado 🗓 24 de abril de 2021 🤓 después de Cristo 🤓 10:39:02,862 🤓 p. m. 🤓 ART"
 ```
 
+<span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
+
 <br>
+
+---
 
 ### <span id="resolved-options" style="color: red">Intl.DateTimeFormat().resolvedOptions()
 
@@ -460,7 +558,11 @@ year: "numeric"
 }
 ```
 
+<span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
+
 <br>
+
+---
 
 ### <span id="range" style="color: red">Intl.DateTimeFormat().formatRange()
 
@@ -488,7 +590,11 @@ let rango = formato.formatRange(ayer, hoy)
 //retorna: "sábado, 24/04/21 – domingo, 25/04/21"
 ```
 
+<span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
+
 <br>
+
+---
 
 ### <span id="range-to-parts" style="color: red">Intl.DateTimeFormat().formatRangeToParts()
 
@@ -531,11 +637,11 @@ rango
 ]
 ```
 
-
-
 [Enlace a MDN - Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
 
 <span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
+
+---
 
 ### <span id="time-zone-list">Time Zone list in Jacascript
 

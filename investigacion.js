@@ -1,7 +1,7 @@
-let hoy = new Date()
+let hoy = new Date(2021, 3, 28)
 let options = {
-    timeZone: 'America/Argentina/Buenos_Aires'
+    timeZoneName: 'short',
 }
 
-let formato = new Intl.DateTimeFormat('zh_Hans_SG', options)
-let opcionesUsadas = formato.resolvedOptions()
+let formato = new Intl.DateTimeFormat('es-AR', options).format(hoy)
+formato
