@@ -37,6 +37,8 @@ car2.color = 'blue'
 console.log(car, car2) // `car` es de color rojo y `car2` de color azul
 ```
 
+Este método copia todos los valores del rpimer objeto pero solo en elprimer nivel de profundidad. Por lo tanto, a àrtir del siguiente nivel de profindidad volvemos a tener el problema de referencia de los objetos.
+
 >## JSON.parse y JSON.stringify
 
 Sin embargo, este método no es suficiente para copiar y modificar objetos con subobjetos por el mismo problema de las referencias. La mejor manera copiar los valores de nuestros objetos en vez de sus referencias es utilizando las funciones `JSON.parse y JSON.stringify`:

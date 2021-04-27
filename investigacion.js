@@ -1,7 +1,5 @@
-let hoy = new Date(2021, 3, 28)
-let options = {
-    timeZoneName: 'short',
-}
+let numeros = [ 1, 2, 3]
 
-let formato = new Intl.DateTimeFormat('es-AR', options).format(hoy)
-formato
+let juntos = numeros.join()
+
+juntos
