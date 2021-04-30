@@ -1,5 +1,17 @@
-let numeros = [ 1, 2, 3]
+function saludar(ciudad, pais) {
+    console.log(`Hola. Soy ${this.nombre} ${this.apellido}. Vivo en ${ciudad}, ${pais}.`)
+}
 
-let juntos = numeros.join()
+const diego = {
+    nombre: 'Diego',
+    apellido: 'Cook'
+}
 
-juntos
+let geoLoc = {
+    ciudad: 'Buenos Aires',
+    pais: 'Argentina'
+}
+
+
+saludar.apply(diego, Object.values(geoLoc))
+

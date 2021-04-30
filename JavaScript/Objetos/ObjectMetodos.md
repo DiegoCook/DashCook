@@ -14,6 +14,8 @@
 
 [Object.keys()](#keys)
 
+[Object.values()](#values)
+
 [Object.getPrototypeOf()](#get-prototype-of)
 
 [Object.preventExtensions()](#prevent-extensions)
@@ -226,6 +228,36 @@ Object.keys(auto)
 [Enlace a MDN - Object.keys()](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
 
 [Enlace a w3school - JavaScript ES5 Object Methods](https://www.w3schools.com/js/js_object_es5.asp)
+
+<span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
+
+<br>
+
+---
+
+## <span id="values" style="color: #4750ce">Object.values()
+
+---
+
+<br>
+
+Devuelve un `array` con los valores correspondientes a las propiedades enumerables de un objeto. Las propiedades son devueltas en el mismo orden a como lo haría un bucle `for...in` (la única diferencia es que un bucle `for-in` también enumera las propiedades en la cadena de prototipo de un objeto).
+
+## SINTAXIS
+
+```javascript
+let auto = {
+    marca: "Ford",
+    modelo: "Focus",
+    anio: 2014
+}
+Object.defineProperty(auto, "modelo", { enumerable: false})
+
+Object.values(auto)
+//retorna: (2) ["Ford", "2014"]
+```
+
+[Enlace a MDN - Object.values()](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/values)
 
 <span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
 
