@@ -1,17 +1,21 @@
-function saludar(ciudad, pais) {
-    console.log(`Hola. Soy ${this.nombre} ${this.apellido}. Vivo en ${ciudad}, ${pais}.`)
+/* function auto() {
+    this.marca = "Ford",
+    this.modelo = "Focus",
+    this.anio = 2014
 }
 
-const diego = {
-    nombre: 'Diego',
-    apellido: 'Cook'
+auto.prototype.newAnio = function() {
+    this.anio = 2021
 }
 
-let geoLoc = {
-    ciudad: 'Buenos Aires',
-    pais: 'Argentina'
+auto.hasOwnProperty('marca')
+auto.hasOwnProperty('newAnio') */
+let auto = {
+    marca: 'Ford',
+    modelo: 'Focus',
+    anio: 2008,
+    newAnio: function(){
+        return this.anio = 2014
+    }
 }
-
-
-saludar.apply(diego, Object.values(geoLoc))
-
+auto.hasOwnProperty('marca')

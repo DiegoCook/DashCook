@@ -203,6 +203,37 @@ Object.getOwnPropertyNames(auto)
 
 ---
 
+## <span id="has-own-property" style="color: #4750ce">Object.hasOwnProperty()
+
+---
+
+<br>
+
+Devuelve un booleano indicando si el objeto tiene la propiedad especificada. Este método puede ser usando para determinar si un objeto tiene la propiedad especificada como una propiedad directa de ese objeto; a diferencia del operador `in`, este método no verifica la cadena prototipo del objeto. El único parametro es el nombre de la propiedad a buscar.
+
+```javascript
+let auto = {
+    marca: "Ford",
+    modelo: "Focus",
+    anio: 2014,
+    newAnio: fuction() {
+        return this.anio = 2021
+    }
+}
+
+auto.hasOwnProperty('marca') // retorna true
+auto.hasOwnProperty('newAnio') // retorna true
+auto.hasOwnProperty('hasOwnProperty') // retorna false
+```
+
+[Enlace a MDN - Object.prototype.hasOwnProperty()](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
+
+<span style="color: #ff0000">*^~^[INICIO](#inicio)^~^*</span>
+
+<br>
+
+---
+
 ## <span id="keys" style="color: #4750ce">Object.keys(object)
 
 ---
@@ -235,7 +266,7 @@ Object.keys(auto)
 
 ---
 
-## <span id="values" style="color: #4750ce">Object.values()
+## <span id="values" style="color: #4750ce">Object.values(object)
 
 ---
 
