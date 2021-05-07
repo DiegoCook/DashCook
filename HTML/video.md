@@ -16,6 +16,8 @@ Your browser does not support the video tag.
 
 [Etiqueta `<iframe>`](#iframe)
 
+[Selección de fragmento de video a reproducir](#seleccion-fragmento)
+
 [Pistas de texto WebVTT](#vtt)
 
 <br>
@@ -142,6 +144,22 @@ Los atributos de la etiqueta son:
 * `srclang`: Especifica el idioma de los datos del texto de la pista (obligatorio si `kind = "subtitles"`)
 
 [Enlace a w3school - Etiqueta HTML `<track>`](https://www.w3schools.com/tags/tag_track.asp)
+
+<br>
+
+## <span id="seleccion-fragmento" style="color: red"> Selección de fragmento de video
+
+---
+
+En el valor del atributo se puede editar el segmento que se desea reproducir. Para esto se usa el símbolo `#` y el tiempo de inicio y final se expresan en segundos. Ejemplo: `#t=10,60`
+
+```html
+<video controls poster="/images/w3html5.gif">
+  <source src="movie.mp4#t=10,60" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+```
 
 <br>
 
