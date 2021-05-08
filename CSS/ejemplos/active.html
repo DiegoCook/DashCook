@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        input:active, a:active, button:active {
+            color: white;
+            background-color: red;
+            height: 30px;
+        }
+        span {
+            display: none;
+        }
+        p:active + span {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="#">Azul</a>
+        </li>
+        <li>
+            <a href="#">Rojo</a>
+        </li>
+        <li>
+            <a href="#">Verde</a>
+        </li>
+    </ul>
+    <p>Click para ver dónde está el span</p>
+    <span>Estaba escondido</span>
+    <p>¿Hay otro?</p>
+    <span>Siiiiii</span>
+    <button>Aquí</button>
+    <input type="submit">
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        input:hover, a:hover, button:hover {
+            color: white;
+            background-color: black;
+            height: 30px;
+        }
+
+        input:active, a:active, button:active {
+            color: white;
+            background-color: red;
+            height: 30px;
+        }
+        /* Like a Tooltip */
+        .container {
+            display: none;
+            padding: 10px;
+            width: 200px;
+        }
+        div {
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            margin-top: -9px;
+            background-color: black;
+            color: cornsilk;
+        }
+        p:hover + div {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="#">Azul</a>
+        </li>
+        <li>
+            <a href="#">Rojo</a>
+        </li>
+        <li>
+            <a href="#">Verde</a>
+        </li>
+    </ul>
+    <p>Click para ver dónde está el span</p>
+    <div class="container">
+        <div>
+            <span>Estaba escondido</span>
+        </div>
+    </div>
+    <p>¿Hay otro?</p>
+    <div class="container">
+        <div>
+            <span>Siiiiii</span>
+        </div>
+    </div>
+    <button>Aquí</button>
+    <input type="submit">
+</body>
+</html>
