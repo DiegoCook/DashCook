@@ -322,8 +322,68 @@ El selector `:optional` selecciona elementos de formulario sin atributo `require
 
 ---
 
+El selector `:valid` selecciona elementos de formulario con un valor que valida según la configuración HTML del elemento. Una vez que el valor de entrada es validado por la configuración del elemento `input` acepta el código CSS escrito.
+
+>Nota: El selector `:valid` solo funciona para elementos de formulario con limitaciones, como elementos `input` con atributos mínimos y máximos, campos de correo electrónico con un correo electrónico legal o campos numéricos con un valor numérico, etc.
+
 <br>
 
 ## `:invalid`
 
 ---
+
+El selector `:invalid` selecciona elementos de formulario con un valor que no es aceptada por la validación según la configuración HTML del elemento.
+
+>Nota: El selector `:invalid` solo funciona para elementos de formulario con limitaciones, como elementos de entrada con atributos mínimos y máximos, campos de correo electrónico sin un correo electrónico legal o campos numéricos sin un valor numérico, etc.
+
+<br>
+
+## `:in-range`
+
+---
+
+
+
+[:out-of-range](#out-of-range)
+
+[:checked](#checked)
+
+[:read-only](#read-only)
+
+[:read-write](#read-write)
+
+### De tipo
+
+[:first-of-type](#first-of-type)
+
+[:last-of-type](#last-of-type)
+
+[:nth-of-type(n)](#nth-of-type)
+
+[:nth-last-of-type(n)](#nth-last-of-type)
+
+[:only-of-type](#only-of-type)
+
+[:not(selector)](#not)
+
+[:root](#root)
+
+### De descendientes
+
+[:first-child](#first-child)
+
+[:last-child](#last-child)
+
+[:nth-child(n)](#nth-child)
+
+[:nth-last-child(n)](#nth-last-child)
+
+[:only-child](#only-child)
+
+[:empty](#empty)
+
+### Otros
+
+[:target](#target)
+
+[:lang(language)](#lang)
