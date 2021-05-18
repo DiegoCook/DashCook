@@ -342,39 +342,296 @@ El selector `:invalid` selecciona elementos de formulario con un valor que no es
 
 ---
 
+La pseudo-clase `:in-range` de CSS representa un elemento `<input>` cuyo valor actual se encuentra dentro de los límites de rango especificados por los atributos `min` y `max`.
 
+```css
+input:in-range {
+  border: 2px solid yellow;
+}
+```
 
-[:out-of-range](#out-of-range)
+[Ejemplo de `:in-range` y `:out-of-range`](./ejemplos/in_out_range.html)
 
-[:checked](#checked)
+<br>
 
-[:read-only](#read-only)
+## `:out-of-range`
 
-[:read-write](#read-write)
+---
 
-### De tipo
+La pseudo-clase `:out-of-range` de CSS representa un elemento `<input>` cuyo valor actual está fuera de los límites de rango especificados por los atributos `min` y `max`.
 
-[:first-of-type](#first-of-type)
+```css
+input:out-of-range {
+  border: 2px solid red;
+}
+```
 
-[:last-of-type](#last-of-type)
+[Ejemplo de `:out-of-range`](./ejemplos/in_out_range.html)
 
-[:nth-of-type(n)](#nth-of-type)
+<br>
 
-[:nth-last-of-type(n)](#nth-last-of-type)
+## `:checked`
 
-[:only-of-type](#only-of-type)
+---
 
-[:not(selector)](#not)
+La pseudo-clase `:checked` de CSS representa cualquier `<input>` de tipo `radio` (`<input type="radio">`), `checkbox` (`<input type="checkbox">`) u `<option>` (en un elemento `<select>`) que está marcado o conmutado a un estado on.
 
-[:root](#root)
+```css
+/* Etiquetas para entradas marcadas */
+input:checked + label {
+  color: red;
+}
 
-### De descendientes
+/* Elemento Radio, cuando está marcado */
+input[type="radio"]:checked {
+  box-shadow: 0 0 0 3px orange;
+}
 
-[:first-child](#first-child)
+/* Elemento Checkbox, cuando está marcado */
+input[type="checkbox"]:checked {
+  box-shadow: 0 0 0 3px hotpink;
+}
 
-[:last-child](#last-child)
+/* Elementos Option, cuando se seleccionan */
+option:checked {
+  box-shadow: 0 0 0 3px lime;
+  color: red;
+}
+```
 
-[:nth-child(n)](#nth-child)
+[Ejemplo de Galería de Imagen utilizando `<input type="radio">`](./ejemplos/chequed1.html)
+
+[Ejemplo de toggle rows utilizando `checkbox`](./ejemplos/chequed2.html)
+
+<br>
+
+## `:read-only`
+
+---
+
+La pseudo-clase `:read-only` de CSS representa un elemento que ya no es editable por el usuario (como un `input` con el atributo `readonly`).
+
+```html
+<input type="text" value="Campo de solo lectura." readonly>
+<p>Este es un párrafo de sólo lectura.</p>
+<p contenteditable="true">Puedes editar este párrafo, ¡inténtalo!</p>
+```
+
+```css
+input:read-only, p:read-only { 
+  background: cyan; 
+}
+p[contenteditable="true"] { 
+  color: blue; 
+}
+```
+
+<br>
+
+## `:read-write`
+
+---
+
+La pseudo-clase `:read-write` de CSS representa un elemento que es editable por el usuario (como un `input`o un elemento `<p>` con el atributo `contenteditable="true"`).
+
+```css
+input:read-write { 
+  background: cyan;
+}
+p:read-write { 
+  background: lightgray; 
+}
+```
+
+<br>
+
+## `:first-of-type`
+
+---
+
+La pseudo-clase `:first-of-type` de CSS representa el primer elemento de su tipo entre un grupo de elementos hermanos.
+
+```html
+<h2>Encabezado</h2>
+<p>Párrafo 1</p>
+<p>Párrafo 2</p>
+```
+
+```css
+p:first-of-type {
+  color: red;
+  font-style: italic;
+}
+```
+
+<br>
+
+## `:last-of-type`
+
+---
+
+La pseudo-class `:last-of-type` de CSS representa el último elemento de su tipo entre un grupo de elementos hermanos.
+
+```css
+p:last-of-type {
+  color: red;
+  font-style: italic;
+}
+```
+
+<br>
+
+## `:nth-of-type(n)`
+
+---
+
+La pseudo-clase `:nth-of-type(n)` de CSS selecciona uno o más elementos de un tipo dado, en función de su posición entre un grupo de hermanos. Para la primera posición `n=1`. Además, `(n)` puede ser un número, una palabra clave o una fórmula. Si es una fórmula (por ejemplo: 2n+2), entonces representa un ciclo donde `n` es un contador que comienza en 0 (cero).
+
+[Ejemplo de `nth-of-type(n)`](./ejemplos/nth_of_type.html)
+
+<br>
+
+## `:nth-last-of-type(n)`
+
+---
+
+La pseudo-clase `:nth-last-of-type()` CSS coincide con uno o más elementos de un tipo dado, en función de su posición entre un grupo de hermanos, contando desde el final. Donde `n=1` es el último elemento.
+
+<br>
+
+## `:only-of-type`
+
+---
+
+La pseudo-clase `:only-of-type` CSS representa un elemento que no tiene hermanos del mismo tipo.
+
+<br>
+
+## `:not(selector)`
+
+---
+
+La pseudoclase `:not()` de CSS representa elementos que no coinciden con una lista de selectores. Como evita que se seleccionen elementos específicos, se lo conoce como la pseudoclase de negación.
+
+La pseudoclase `:not()` requiere una lista separada por comas de uno o más selectores como argumento. La lista no debe contener otro selector de negación o un pseudoelemento.
+
+>La capacidad de enumerar más de un selector es experimental y aún no es ampliamente compatible.
+
+```css
+/* elementos <p> que no están en la clase `.fancy` */
+p:not(.fancy) {
+  color: green;
+}
+
+/* Elementos que no son elementos <p> */
+body:not(p) {
+  text-decoration: underline;
+}
+
+/* Elementos que no son elementos <div> o <span> */
+body:not(div):not(span) {
+  font-weight: bold;
+}
+
+/* Elementos que no son `.crazy` o `.fancy` */
+/* Tenga en cuenta que esta sintaxis aún no está bien soportada. */
+body:not(.crazy, .fancy) {
+  font-family: sans-serif;
+}
+```
+
+<br>
+
+## `:root`
+
+---
+
+La pseudo-clase `:root` de CSS selecciona el elemento raíz de un árbol que representa el documento. En HTML, `:root` representa el elemento `<html>` y es idéntico al selector `html`, excepto que su especificidad es mayor.
+
+```css
+/* Selecciona el elemento raíz del documento:
+   <html> en el caso de HTML */
+:root {
+  background: yellow;
+}
+```
+
+<br>
+
+## `:first-child`
+
+---
+
+La pseudo-clase `:first-child` de CSS representa el primer elemento entre un grupo de elementos hermanos. No al primer elemento de su tipo (para ser seleccionado deber ser el el tipo indicado y el primer hijo).
+
+```html
+<div>
+  <p>¡Este texto está seleccionado!</p>
+  <p>Este texto no está seleccionado.</p>
+</div>
+
+<div>
+  <h2>Este texto no está seleccionado: no es un `p`.</h2>
+  <p>Este texto no está seleccionado.</p>
+</div>
+```
+
+```css
+p:first-child {
+  color: lime;
+  background-color: black;
+  padding: 5px;
+}
+```
+
+Resultado
+
+![Resultado](./ejemplos/images/res_first-child.png)
+
+<br>
+
+## `:last-child`
+
+---
+
+La pseudo-clase `:last-child` de CSS representa el último elemento entre un grupo de elementos hermanos.
+
+```css
+p:last-child {
+  color: lime;
+  background-color: black;
+}
+```
+
+<br>
+
+## `:nth-child(n)`
+
+---
+
+La pseudo-clase `:nth-child()` de CSS coincide con uno o más elementos en función de su posición entre un grupo de hermanos. El valor `n` puede ser un número, una palabra clave (`odd` o `even`) o una fórmula de números enteros.
+
+>El elemento HTML seleccionado debe ser el número de hijo indicado. Si un elemento `div` tiene 7 hijos de los cuales 6 son párrafos y uno es imágen, y dicha imagen es el hijo 3, entonces: `p:nth-child(3)` no ejecutará ningún estilo CSS, ya que el hijo 3 no es un elemento `p`.
+
+Selectores de ejemplos:
+
+`tr:nth-child(odd)` o `tr:nth-child(2n+1)` Representa las filas impares de una tabla HTML: 1, 3, 5, etc.
+
+`tr:nth-child(even)` o `tr:nth-child(2n)` Representa las filas pares de una tabla HTML: 2, 4, 6, etc.
+
+`:nth-child(7)` Representa el séptimo elemento.
+
+`:nth-child(5n)` Representa los elementos 5, 10, 15, etc.
+
+`:nth-child(3n+4)` Representa los elementos 4, 7, 10, 13, etc.
+
+`:nth-child(-n+3)` Representa los primeros tres elementos entre un grupo de hermanos.
+
+`p:nth-child(n)` Representa cada elemento `<p>` entre un grupo de hermanos. Esto es lo mismo que un simple selector `p`.
+
+`p:nth-child(1)` o `p:nth-child(0n+1)` Representa cada `<p>` que es el primer elemento entre un grupo de hermanos. Esto es lo mismo que el selector `:first-child`.
+
+<br>
 
 [:nth-last-child(n)](#nth-last-child)
 
