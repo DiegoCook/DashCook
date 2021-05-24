@@ -633,9 +633,39 @@ Selectores de ejemplos:
 
 <br>
 
-[:nth-last-child(n)](#nth-last-child)
+## `:nth-last-child(n)`
 
-[:only-child](#only-child)
+---
+
+La pseudo-clase `:nth-last-child()` selecciona uno o más elementos en función de su posición entre un grupo de hermanos, contando desde el final. Donde `n` puede ser un número, una palabra clave (`odd` o `even`) o una fórmula.
+
+la notacion funcional representa elementos cuya posición numérica en una serie de hermanos coincide con el patrón `An+B`, para cada entero positivo o valor cero de `n`. El índice del primer elemento, contando desde el final, es 1. Los valores A y B deben ser ambos números enteros.
+
+Selectores de ejemplo:
+
+`tr:nth-last-child(odd)` o `tr:nth-last-child(2n+1)` Representa las filas impares de una tabla HTML: 1, 3, 5, etc., contando desde el final.
+
+`tr:nth-last-child(even)` o `tr:nth-last-child(2n)` Representa las filas pares de una tabla HTML: 2, 4, 6, etc., contando desde el final.
+
+`:nth-last-child(7)` Representa el séptimo elemento, contando desde el final.
+
+`:nth-last-child(5n)` Representa los elementos 5, 10, 15, etc., contando desde el final.
+
+`:nth-last-child(3n+4)` Representa los elementos 4, 7, 10, 13, etc., contando desde el final.
+
+`:nth-last-child(-n+3)` Representa los últimos tres elementos entre un grupo de hermanos.
+
+`p:nth-last-child(n)` Representa cada elemento `<p>` entre un grupo de hermanos. Esto es lo mismo que un simple selector p.
+
+`p:nth-last-child(1)` o `p:nth-last-child(0n+1)` Representa cada `<p>` que es el primer elemento entre un grupo de hermanos, contando desde el final. Esto es lo mismo que el selector `:last-child`.
+
+<br>
+
+## `:only-child`
+
+---
+
+
 
 [:empty](#empty)
 
