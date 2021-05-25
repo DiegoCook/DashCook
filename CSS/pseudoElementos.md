@@ -548,6 +548,8 @@ body:not(.crazy, .fancy) {
 
 La pseudo-clase `:root` de CSS selecciona el elemento raíz de un árbol que representa el documento. En HTML, `:root` representa el elemento `<html>` y es idéntico al selector `html`, excepto que su especificidad es mayor.
 
+>Este pseudoelemento se utiliza para definir variables en CSS.
+
 ```css
 /* Selecciona el elemento raíz del documento:
    <html> en el caso de HTML */
@@ -664,8 +666,6 @@ Selectores de ejemplo:
 ## `:only-child`
 
 ---
-
-
 
 [:empty](#empty)
 
