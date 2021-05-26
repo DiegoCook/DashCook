@@ -41,8 +41,14 @@ Se crean tantos archivos CSS como `media quieries` se definan. esta es una muy b
 
 ```html
 <link rel="stylesheet" href="main.css" />
-<link rel="stylesheet" href="tablet.css" />
-<link rel="stylesheet" href="desktop.css" />
+<link 
+    rel="stylesheet" 
+    href="tablet.css" 
+    media="screen and (min-width: 600px)" />
+<link 
+    rel="stylesheet" 
+    href="desktop.css" 
+     media="screen and (min-width: 900px)" />
 ```
 
 <br>
