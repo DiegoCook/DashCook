@@ -68,6 +68,37 @@
 - `paswd` = permite cambiar la contraseña del usuario.
 - `printenv` = imprime las variables del entorno.
 - `code .zshrc` = para editar las variables de entorno en zsh.
+- `find ./` ***nombreDelArchivo*** = busca archivos desde el directorio raiz y a todas las carpetas de nivel.
+- `find ./ -type fd` nombreDelArchivo = `f` busca archivos y `d` busca directorios.
+- `find ./ -size 20M` = busca archivos más grandes que 20MB.
+- `grep -i` ***palabra*** ***nombreDelArchivo*** = busca y muestra las líneas donde aparece la palabra buscada dentro de un archivo. La bandera `i` (de ignore) se utiliza para que no sea "key sensitive", o sea, que no haga diferencia entre mayúsculas y minúsculas.
+- `grep -c` ***palabra*** ***nombreDelArchivo*** = cuenta la cantidad de veces que aparece la palabra dentro del archivo mencionado.
+- `grep -v` ***palabra*** ***nombreDelArchivo*** = muestra las no coincidencias.
+- `wc` ***nombreDelArchivo*** = (`w`ord `c`ounter) cuenta las palabras de un archivo. El resultado muestra 3 número: líneas, palabras y bytes.
+- `wc` -l ***nombreDelArchivo*** = retorna el número de líneas del archivo.
+- `wc` -w ***nombreDelArchivo*** = retorna el número de palabras del archivo.
+- `wc` -c ***nombreDelArchivo*** = retorna el número de bytes del archivo.
+
+### <span style="color: red">Para redes
+
+- `ifconfig` = nos muestra información de nuestra red.
+- `ping` ***paginaWeb*** = nos informa si una página web está activa.
+- `curl` ***paginaWeb*** = nos trae un archivo de la web. En este acaso un HTML.
+- `wget` ***paginaWeb*** = lo mismo que `curl` solo que guarda el archivo.
+- `traceroute` ***paginaWeb*** = nos muestra todas las computadoras necesaria para llegar a la página indicada.
+- `netstat -i` = nos muestra los dispositivos de red y si están trabajando o no, o si hay algún error.
+
+### <span style="color: red">Compresión
+
+- `tar -cvf` ***nombreDelArchivoGenerado`.tar`*** ***nombreDeLaCarpetaAComprimir*** = `c` de comprimir, `v` nos muestra en la terminal lo que va haciendo, `f` de file.
+- `tar -cvzf` ***nombreDelArchivoGenerado`.tar.gz`*** ***nombreDeLaCarpetaAComprimir*** = mejor calidad con `gzip`.
+- `tar -xvf` ***nombreDelArchivoGenerado`.tar`*** = `x` para descomprimir.
+- `zip -r` ***nombreDelArchivoGenerado***`InZip.zip` ***nombreDeLaCarpetaAComprimir*** = comprime en formato `zip`.
+- `unzip` ***nombreDelArchivoGenerado***`InZip.zip` = descomprime un archivo `zip`.
+
+### <span style="color: red"> Para administrar procesos
+
+- `ps` = muestra los procesos que están corriendo.
 
 ## Atajos
 
