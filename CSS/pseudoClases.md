@@ -1,4 +1,4 @@
-# Pseudoclases y pseudoelementos
+# Pseudoclases
 
 ## ÍNDICE
 
@@ -667,10 +667,89 @@ Selectores de ejemplo:
 
 ---
 
-[:empty](#empty)
+La pseudo-clase `:only-child` de CSS representa un elemento sin hermanos. Esto es lo mismo que `:first-child:last-child` o `:nth-child(1):nth-last-child(1)`, pero con una especificidad menor.
 
-### Otros
+```html
+<main>
+  <div>
+    <i>Soy un hijo único y solitario.</i>
+  </div>
 
-[:target](#target)
+  <div>
+    <i>Yo tengo hermanos.</i><br>
+    <b>¡Yo también!</b><br>
+    <span>Yo también tengo hermanos, <span>pero este es un hijo único.</span></span>
+  </div>
+</main>
+```
+
+```css
+main :only-child {
+  color: red;
+}
+```
+
+Resultado:
+
+<i style="color: red">Soy un hijo único y solitario.</i>
+<p><i>Yo tengo hermanos.</i></p>
+<p><b>¡Yo también!</b></p>
+Yo también tengo hermanos, <span style="color: red">pero este es un hijo único.</span>
+
+<br>
+<br>
+
+## <span id="empty"> `:empty`
+
+---
+
+La pseudo-clase `:empty` de CSS representa cualquier elemento que no tenga hijos. Los hijos pueden ser nodos de elemento o texto (incluido el espacio en blanco). Los comentarios o las instrucciones de procesamiento no afectan si un elemento se considera vacío.
+
+```html
+<div class="box"><!-- Voy a ser de color lima. --></div>
+<div class="box">Voy a ser de color rosa.</div>
+<div class="box">
+    <!-- Seré de color rosa debido a los espacios en blanco alrededor de este comentario. -->
+</div>
+```
+
+```css
+.box {
+  background: pink;
+  height: 80px;
+  width: 80px;
+}
+
+.box:empty {
+  background: lime;
+}
+```
+
+<br>
+
+## <span id="target"> `:target`
+
+---
+
+La pseudo-clase `:target` de CSS representa un elemento único (el elemento objetivo) con un `id` que coincide con el fragmento de la URL.
+
+```css
+/* Selecciona un elemento con una ID que coincida con el fragmento de la URL actual */
+:target {
+  border: 2px solid black;
+}
+```
+
+Por ejemplo, la siguiente URL tiene un fragmento (indicado por el signo `#`) que apunta a un elemento llamado `section2`:
+
+```html
+http://www.example.com/index.html#section2
+```
+
+El siguiente elemento sería seleccionado por un selector `:target` cuando la URL actual sea igual a la anterior:
+
+```html
+<section id="section2">Ejemplo</section>
+```
 
 [:lang(language)](#lang)
