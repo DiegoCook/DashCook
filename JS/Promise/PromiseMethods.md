@@ -1,5 +1,19 @@
 # <span id="inicio"> Métodos de Promesas
 
+## ÍNDICE
+
+[.all ( )](#all)
+
+[.race ( )](#race)
+
+[.finally ( )](#finally)
+
+[.reject ( )](#reject)
+
+[.resolve ( )](#resolve)
+
+[.allSettled ( )](#settled)
+
 <br>
 
 ## <span id="all" style="color: red"> Promise.all ( )
@@ -56,7 +70,7 @@ Promise.all([p1, p2, p3, p4, p5])
 
 <br>
 
-## <span id="race" style="color: red"> Promice.race ( )
+## <span id="race" style="color: red"> Promise.race ( )
 
 ---
 
@@ -106,3 +120,92 @@ Promise.race([p5, p6]).then( value => {
 ```
 
 [Enlace a MDN - Promise.race()](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise/race)
+
+<br>
+
+## <span id="finally" style="color: red"> Promise.finally( )
+
+---
+
+El método `finally()` devuelve una `Promise`. Cuando la promesa se resuelve, sea exitosa o rechazada, la función de callback específicada será ejecutada. Esto ofrece una forma de ejecutar código sin importar como se haya resuelto la promesa.
+
+Esto ayuda a evitar tener código duplicado tanto en el `then()` como en el `catch()`.
+
+El método `finally()` puede ser de utilidad si quieres hacer algún proceso o limpieza una vez que la promesa termina, sin importar su resultado.
+
+```javascript
+let isLoading = true;
+
+fetch(myRequest).then(function(response) {
+    var contentType = response.headers.get("content-type");
+    if(contentType && contentType.includes("application/json")) {
+      return response.json();
+    }
+    throw new TypeError("Oops, no hemos obtenido un JSON!");
+  })
+  .then(function(json) { /* procesar el JSON */ })
+  .catch(function(error) { console.log(error); /* esta línea podría arrojar error, e.g. cuando console = {} */ })
+  .finally(function() { isLoading = false; });
+```
+
+<br>
+
+## <span id="reject" style="color: red"> Promise.reject ( )
+
+---
+
+El método `Promise.reject(reason)` retorna un objeto `Promise` que es rechazado por la razón (reason) específicada.
+
+La función estática `Promise.reject` retorna un objecto `Promise` que es rechazado. Para fines de depuración y captura selectiva de error, se suele pasar por el parámetro `reason` un  `instanceof` `Error`.
+
+```javascript
+Promise.reject(new Error('fail')).then(function() {
+  // no entra en esta función
+}, function(error) {
+  console.log(error); // Stacktrace
+});
+```
+
+<br>
+
+## <span id="resolve" style="color: red"> Promise.resolve ( )
+
+---
+
+El método `Promise.resolve(value)` retorna un objeto Promise que es resuelto con el valor dado.
+
+```javascript
+const promise1 = Promise.resolve(123);
+
+promise1.then((value) => {
+  console.log(value);
+});
+  // expected output: 123
+```
+
+<br>
+
+## <span id="settled" style="color: red"> Promise.allSettled ( )
+
+---
+
+El método `Promise.allSettled()` devuelve una promesa que se resuelve después de que todas las promesas dadas se hayan cumplido o rechazado, con una serie de objetos que describen el resultado de cada promesa.
+
+Por lo general, se usa cuando tiene varias tareas asincrónicas que no dependen unas de otras para completarse con éxito, o siempre le gustaría saber el resultado de cada promesa.
+
+```javascript
+Promise.allSettled([
+  Promise.resolve(33),
+  new Promise(resolve => setTimeout(() => resolve(66), 0)),
+  99,
+  Promise.reject(new Error('an error'))
+])
+.then(values => console.log(values));
+
+// [
+//   {status: "fulfilled", value: 33},
+//   {status: "fulfilled", value: 66},
+//   {status: "fulfilled", value: 99},
+//   {status: "rejected",  reason: Error: an error}
+// ]
+```
