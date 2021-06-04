@@ -50,6 +50,7 @@
 - `rm -ri` ***nombreDecarpeta*** = pregunta archivo por archivo y carpeta por carpeta si deseamos borrar.
 - `touch` ***nombreDeArchivo*** ***archvivo2*** ***archivo3*** = crea archivos en simultáneo si se necesita.
 - `cat` ***file1*** ***file2*** = concatena el contenido de los dos archivos.
+- `vim` nombreDelArchivo = crea el archivo y abre un editor de código.
 
 ### <span style="color: red">De la shell
 
@@ -99,6 +100,9 @@
 ### <span style="color: red"> Para administrar procesos
 
 - `ps` = muestra los procesos que están corriendo.
+- `kill` idProces = detiene el proceso.
+- `top` = muestra los procesos que más recursos consumen.
+- `jobs` = consulta de todos los procesos que corren en el background.
 
 ## Atajos
 
