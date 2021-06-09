@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    div :first-of-type {
-  background-color: pink;
-}
-    </style>
-</head>
+
+<html>
+
+ <head>
+  <title>Attributes example</title>
+  <script type="text/javascript">
+   function listAttributes() {
+     var paragraph = document.getElementById("paragraph");
+     var result = document.getElementById("result");
+      console.log(paragraph.attributes)
+
+     // Primero, verifiquenmos que el párrafo tiene algún atributo
+     if (paragraph.hasAttributes()) {
+       var attrs = paragraph.attributes;
+       var output = "";
+       for(var i = attrs.length - 1; i >= 0; i--) {
+         output += attrs[i].name + "->" + attrs[i].value;
+       }
+       result.value = output;
+     } else {
+       result.value = "No hay atributos que mostrar";
+     }
+   }
+  </script>
+ </head>
+
 <body>
-    <article>
-        <div>!Este `div` es primero!</div>
-        <div>¡Este <span>`span` anidado es el primero</span>!</div>
-        <div>¡Este <em>`em` anidado es el primero</em>, pero este <em>`em` anidado es el último</em>!</div>
-        <div>¡Este <span>`span` anidado tiene estilo</span>!</div>
-        <b>¡Este `b` califica!</b>
-        <div>Este es el `div` final.</div>
-      </article>
+ <p id="paragraph" style="color: green;">Párrafo de ejemplo</p>
+ <form action="">
+  <p>
+    <input type="button" value="Muestra el nombre cada atributo y su valor"
+      onclick="listAttributes();">
+    <input id="result" type="text" value="">
+  </p>
+ </form>
 </body>
 </html>
