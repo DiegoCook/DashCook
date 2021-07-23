@@ -2,6 +2,10 @@
 
 <br>
 
+[Documentación oficial de Sass](https://sass-lang.com/documentation)
+
+<br>
+
 ## Instalación
 
 ---
@@ -42,6 +46,9 @@ Se pueden utilizar dos extensiones distintas para losarchivos `Sass`:
     &__avatar {
         width: 50%;
         margin: 0;
+    }
+    &:hover {
+        boreder: 1px solid red;
     }
 }
 ```
@@ -123,3 +130,86 @@ Cuando se utiliza:
     @include box;
 }
 ```
+
+`Mixin` con parámetro:
+
+```css
+@mixin mixin-con-parametros($color: #26619C, $name: lapislazuli) {
+    .box-#{$name} {
+        background-color: $color;
+        width: 100%;
+        height: 100px;
+        padding: 20px;
+    }
+}
+```
+
+Se llama:
+
+```css
+@include mixin-con-parametros(#F00, rojo);
+```
+
+<br>
+
+## <span style="color: red"> @function
+
+---
+
+```css
+@function funcion-con-parametros($num: 1000px) {
+    @return $num/2;
+}
+```
+
+```css
+@include funcion-con-parametros(1500px);
+```
+
+<br>
+
+## <span style="color:red"> Condicionales
+
+---
+
+```css
+@mixin titulos($fuente) {
+    @if $fuente==$Fuente1 {
+        font-family: $Fuente1;
+    } @else {
+        font-family: $Fuente2;
+        text-transform: uppercase;
+    }
+}
+```
+
+Se invoca:
+
+```css
+.titulos {
+    text-align: center;
+    color: red;
+    @include titulos($Fuente2);
+}
+```
+
+[Enlace a documentación oficial - `@if` and `@else`](https://sass-lang.com/documentation/at-rules/control/if)
+
+<br>
+
+## <span style="color:red"> Loops
+
+---
+
+```css
+@each $header, $size in (h1: 30px, h2: 25px, h3: 20px) {
+    #{$header} {
+        font-size: $size;
+        margin: 0;
+    }
+}
+```
+
+> No necesitan llamarse. Los estilos se generan automáticmente.
+
+[Enlace a documentación oficial - Flow Control Rules](https://sass-lang.com/documentation/at-rules/control)

@@ -1,5 +1,7 @@
 # Flexbox
 
+[Flexbox Cheatsheet](https://darekkay.com/flexbox-cheatsheet/)
+
 <br>
 
 ## display
@@ -11,6 +13,14 @@ Se define en contenedores padres.
 ```css
 .container {
     display: flex;
+}
+```
+
+Si se utiliza `inline-flex` el contenedor padre con respecto a los demás tendrá atributos de `display inline` y con resecto a los hijos tendrán el atributo `flex`.
+
+```css
+.container {
+    display: inline-flex;
 }
 ```
 

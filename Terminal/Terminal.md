@@ -114,7 +114,7 @@
 
 - `ls; mkdir ProyectosWeb; cal` = los comandos se separan con punto y coma.
 
-## Ejecución de comandos de manera síncrona
+## Ejecución de comandos de manera asincrona
 
 - `ls & date & cal` = corren los tres comandos en tres terminales en paralelo.
 

@@ -1,4 +1,4 @@
-# Pseudoclases
+# Pseudo-clases
 
 ## ÍNDICE
 
