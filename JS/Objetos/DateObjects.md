@@ -432,7 +432,7 @@ En muchas interfaces de usuario existe el deseo de personalizar el formato de es
 ```javascript
 let date = new Date()
 
-let formateador = new Intl.DateTimeFormat('en-us', {
+let formatter = new Intl.DateTimeFormat('en-us', {
   weekday: 'long',
   year: 'numeric',
   month: 'numeric',
@@ -474,7 +474,7 @@ Con la información disponible por separado se puede formatear y concatenar nuev
 
 ```javascript
 //PARTE I
-//Se declara la fecha ylas opciones de formato
+//Se declara la fecha y las opciones de formato
 let hoy = new Date()
 let options = {
     weekday: 'long',
@@ -494,7 +494,7 @@ let options = {
 let formato = new Intl.DateTimeFormat('es-AR', options)
 
 //PARTE II
-//Se crea el array de objetos con las partes de la fecha según la configuración locale elegida y las opciones de formato.
+//Se crea el array de objetos con las partes de la fecha según la configuración local elegida y las opciones de formato.
 let diseccionDeHoy = formato.formatToParts(hoy) 
 
 //PARTE III
