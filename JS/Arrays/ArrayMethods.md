@@ -6,6 +6,8 @@
 
 [join ( )](#join)
 
+[Link a video de Array de objetos- como buscar](https://www.youtube.com/watch?v=RTaQBkmcIuM)
+
 <br>
 
 ---

@@ -20,6 +20,8 @@ Your browser does not support the video tag.
 
 [Pistas de texto WebVTT](#vtt)
 
+[Captura de imágenes (Función Camera)](#camera)
+
 <br>
 
 ---
@@ -201,3 +203,13 @@ Yo lo dejé...
 ```
 
 [Enlace a MDN - Formato de pistas de texto para la web (WebVTT)](https://developer.mozilla.org/es/docs/Web/API/WebVTT_API)
+
+<br>
+
+## <span id="camera"> Captura de imágenes (Función Camera)
+
+---
+
+[Enlace a YouTube - How to create a CAMERA APP in VueJS](https://www.youtube.com/watch?v=HR97Uq2Ejks)
+
+[Enlace a YouTube - How to Implement Webcam in Vue Js](https://www.youtube.com/watch?v=6Yrlke4EW9M)
