@@ -53,6 +53,10 @@ Se crean tantos archivos CSS como `media quieries` se definan. esta es una muy b
 
 <br>
 
+## [Link de lista de todas las media querys](https://docs.w3cub.com/css/@media/color)
+
+<br>
+
 ## Breakpoints de Bootstrap
 
 ---
