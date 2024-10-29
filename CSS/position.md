@@ -23,10 +23,12 @@ El elemento es posicionado de acuerdo al flujo normal del documento. Las propied
 El elemento es posicionado de acuerdo al flujo normal del documento, y luego es desplazado con relación a sí mismo, con base en los valores de `top`, `right`, `bottom`, and `left`. El desplazamiento no afecta la posición de ningún otro elemento; por lo que, el espacio que se le da al elemento en el esquema de la página es el mismo como si la posición fuera `static`. Este valor crea un nuevo contexto de apilamiento, donde el valor de `z-index` no es `auto`. El efecto que tiene relative sobre los elementos `table-*-group`, `table-row`, `table-column`, `table-cell`, y `table-caption` no está definido.
 
 ```html
-<div class="box">One</div>
-<div class="box" id="two">Two</div>
-<div class="box">Three</div>
-<div class="box">Four</div>
+<div>
+  <div class="box">One</div>
+  <div class="box" id="two">Two</div>
+  <div class="box">Three</div>
+  <div class="box">Four</div>
+</div>
 ```
 
 ```css
